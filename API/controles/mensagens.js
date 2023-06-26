@@ -9,22 +9,19 @@ router.post("/", async (req, res) => {
 
     var dados = req.body
 
-    await db.mensagem.create(dados).then((dadosMensagem) => {
-
-        return res.js({
+    try {
+        const dadosMensagem = await db.mensagem.create(dados);
+        return res.json({
             error: false,
             mensagem: "Cadastro efetuado com sucesso",
             dados: dadosMensagem
         });
-
-    }).catch(() => {
-
-        return res.js({
-            error: false,
+    } catch (error) {
+        return res.json({
+            error: true,
             mensagem: "Cadastro não efetuado, Por favor tente novamente",
         });
-
-    });
+    }
 
 });
 

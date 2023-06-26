@@ -22,8 +22,8 @@ app.use((req, res, next) => {
 
 const clientes = require("./controles/mensagens");
 
-app.use("/clientes", clientes)
+app.use("/mensagens", clientes)
 
-app.listen(3000, () => {
-    console.log("Servidor iniciado na porta 3000: http://localhost:3000")
+app.listen(3001, () => {
+    console.log("Servidor iniciado na porta 3001: http://localhost:3001")
 }); 
