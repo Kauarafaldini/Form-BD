@@ -7,9 +7,9 @@ const router = express.Router();
 
 router.post("/", async (req, res) => {
 
-    var dados= req.body
+    var dados = req.body
 
-    await db.clientes.create(dados).then((dadosMensagem) => {
+    await db.mensagem.create(dados).then((dadosMensagem) => {
 
         return res.js({
             error: false,
