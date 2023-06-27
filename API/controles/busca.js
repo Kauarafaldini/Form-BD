@@ -5,6 +5,7 @@ const db = require('../db/models/index');
 const router = express.Router();
 
 router.get('/', async (req, res) => {
+
     try{
         const { nome, email } = req.query;
 
@@ -16,7 +17,7 @@ router.get('/', async (req, res) => {
         if (email) {
             buscar.email = email;
         }
-        const clientes = await db.clientes.findALL({ where: buscar});
+        const clientes = await db.clientes.findAll({ where: buscar});
 
         return res.json({
             error: false,
@@ -24,10 +25,11 @@ router.get('/', async (req, res) => {
             dados: clientes
         });
     } catch (error) {
-        console.log(error);
         return res.status(500).json({
             error: true,
             mensagem: 'Erro ao buscar cliente'
         });
     }
 });
+
+module.exports = router;

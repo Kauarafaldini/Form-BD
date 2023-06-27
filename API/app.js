@@ -1,6 +1,6 @@
 const express = require('express');
 
-const cors = require('cors')
+const cors = require('cors');
 
 const app = express();
 
@@ -21,6 +21,10 @@ app.use((req, res, next) => {
 app.use(cors());
 
 const clientes = require("./controles/clientes");
+
+const clientesRouter = require('./controles/busca');
+
+app.use("/clientes", clientesRouter)
 
 app.use("/clientes", clientes);
 
