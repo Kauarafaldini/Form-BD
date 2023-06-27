@@ -7,15 +7,17 @@ const router = express.Router();
 router.post("/", async (req, res) => {
 
     try {
+
     const dados = req.body;
-    const dadosMensagem = await db.clientes.create(dados);
+
+    const novoCliente = await db.clientes.create(dados);
         return res.json({
             error: false,
             mensagem: "Cadastro efetuado com sucesso",
-            dados: dadosMensagem
+            dados: novoCliente
         });
     } catch (error) {
-        return res.json({
+        return res.status(500).json({
             error: true,
             mensagem: "Cadastro não efetuado, Por favor tente novamente",
             });
