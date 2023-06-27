@@ -10,16 +10,12 @@ const config = require(__dirname + '/../../config/config.js')[env];
 const db = {};
 
 let sequelize;
-if (config.use_env_variable) {
-  sequelize = new Sequelize(process.env[config.use_env_variable], config);
-} else {
+try {
   sequelize = new Sequelize(config.database, config.username, config.password, config);
-}
-
-try{
-  console.log("Conexão com banco de dados bem sucedida")
-}catch(error){
-  console.log("Conexão com banco de dados mal sucedida", error);
+  console.log('Conexão com banco de dados bem-sucedida');
+} catch (error) {
+  console.log('Conexão com banco de dados mal-sucedida', error);
+  process.exit(1);
 }
 
 fs

@@ -1,4 +1,4 @@
-const express = require("express");
+const express = require('express');
 
 const cors = require('cors')
 
@@ -14,16 +14,16 @@ app.use((req, res, next) => {
 
     res.header("Access-Control-Allow-Headers", "Content-Type");
 
-    app.use(cors());
+    next();
 
-    next()
+});
 
-})
+app.use(cors());
 
-const clientes = require("./controles/mensagens");
+const clientes = require("./controles/clientes");
 
-app.use("/mensagens", clientes)
+app.use("/clientes", clientes);
 
-app.listen(3001, () => {
-    console.log("Servidor iniciado na porta 3001: http://localhost:3001")
+app.listen(8080, () => {
+    console.log("Servidor iniciado na porta 8080: http://localhost:8080");
 }); 
